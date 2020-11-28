@@ -55,21 +55,14 @@ void loop() {
   TBMessage msg;
   
   if (myBot.getNewMessage(msg)) {
-    if (msg.text.equalsIgnoreCase("/RELAY1ON")) {
-      digitalWrite(relay1, HIGH);
-      myBot.sendMessage(msg.sender.id, "Relay1 hidup");
-    }
-    else if (msg.text.equalsIgnoreCase("/RELAY1OFF")) {
-      digitalWrite(relay1, LOW);
-      myBot.sendMessage(msg.sender.id, "Relay1 mati");
-    }
-    else if (msg.text.equalsIgnoreCase("/RELAY2ON")) {
-      digitalWrite(relay2, HIGH);
-      myBot.sendMessage(msg.sender.id, "Relay2 hidup");
-    }
-    else if (msg.text.equalsIgnoreCase("/RELAY2OFF")) {
-      digitalWrite(relay2, LOW);
-      myBot.sendMessage(msg.sender.id, "Relay2 mati");
+    if (msg.text.equalsIgnoreCase("/SIRAM")) {
+      digitalWrite(relay1, HIGH); //Menyalakan inverter
+      delay(2000);
+      digitalWrite(relay2, HIGH); //Menyalakan pompa air
+      myBot.sendMessage(msg.sender.id, "Menyiram.....");
+      delay(10000);
+      digitalWrite(relay1, LOW); //Matikan inverter
+      digitalWrite(relay2, LOW); //matikan pompa air
     }
     else if (msg.text.equalsIgnoreCase("/STATUS")) {
       dht.begin();
