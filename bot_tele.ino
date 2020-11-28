@@ -63,6 +63,7 @@ void loop() {
       delay(10000);
       digitalWrite(relay1, LOW); //Matikan inverter
       digitalWrite(relay2, LOW); //matikan pompa air
+      myBot.sendMessage(msg.sender.id, "Siram selesai!");
     }
     else if (msg.text.equalsIgnoreCase("/STATUS")) {
       dht.begin();
